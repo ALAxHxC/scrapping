@@ -20,7 +20,7 @@ async function cheerioExample() {
 
 
 cheerioExample().then((data)=>{
-    //console.log(data)
+    console.log(data)
 }).catch(error=>{
     console.log('error',error.message,error.stack);
 })
