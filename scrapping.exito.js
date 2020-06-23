@@ -3,10 +3,13 @@ const cheerio = require('cheerio');
 const scrapeIt = require("scrape-it");
 
 async function cheerioExample() {
-    const pageContent = await axios.get('https://www.exito.com/search?_query=go%20pro');
+    const pageContent = await axios.get('https://www.exito.com/search?_query=p30');
     const $ = cheerio.load(pageContent.data);
-    const encotnrados = $('section.vtex-store-components-3-x-container').html();
-    console.log(encotnrados)
+    const encotnrados = $('div.render-container').find('div.render-provider').html()
+    /*.map((_, el) => {
+        console.log('itera',$(el).text())
+
+    });
     /*.find('section').map((_, el) => {
         el = $(el); 
         return el.html();
@@ -18,6 +21,7 @@ async function cheerioExample() {
         return { title, description, link,image };
     }).get()
     return encotnrados;*/
+    console.log(encotnrados)
    
 }
 
