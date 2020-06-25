@@ -31,26 +31,27 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <div class="container">
-    
       <% productos.forEach((item)=>{%>
-      
-        <div class="card" style="width: 18rem;">
-          <img
-            class="card-img-top"
-            src="<%=item.image%>"
-            alt="Card image cap"
-          />
-          <div class="card-body">
-            <h5 class="card-title"><%=item.title%></h5>
-            <p class="card-text">
-              <%=item.fuente%> <%= item.description %>
-            </p>
-            <a href="<%=item.link%>" class="btn btn-primary"
-              >Ir a la pagina<%=item.fuente%></a
-            >
-          </div>
+
+      <div class="card" style="width: 18rem;">
+        <img
+          class="card-img-top"
+          src="<%=item.image%>"
+          alt="Card image cap"
+          max-width="128px"
+          max-height="256px"
+        />
+        <div class="card-body">
+          <h5 class="card-title"><%=item.title%></h5>
+          <p class="card-text">
+            <%=item.fuente%> <%= item.description %>
+          </p>
+          <a href="<%=item.link%>" class="btn btn-primary"
+            >Ir a la pagina<%=item.fuente%></a
+          >
         </div>
-      </li>
+      </div>
+
       <%});%>
     </div>
     <form action="/search/" method="post">

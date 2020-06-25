@@ -2,7 +2,7 @@ const alkosto = require('./alkosto');
 const falabella = require('./falabella');
 const alkomprar = require('./alkomprar');
 const mercadolibre = require('./mercadolibre');
-
+const _ = require('lodash');
 async function search(search) {
     let responses = [];
     let promises = [];
@@ -11,6 +11,7 @@ async function search(search) {
     promises.push(falabella.scrapping(search, responses))
     promises.push(mercadolibre.scrapping(search, responses))
     await Promise.all(promises)
+    responses = _.sortBy(responses, ['description'])
     return responses
 }
 
