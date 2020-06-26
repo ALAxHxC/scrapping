@@ -2,6 +2,7 @@ const alkosto = require('./alkosto');
 const falabella = require('./falabella');
 const alkomprar = require('./alkomprar');
 const mercadolibre = require('./mercadolibre');
+const lineo = require('./lineo');
 const _ = require('lodash');
 async function search(search) {
     let responses = [];
@@ -10,6 +11,7 @@ async function search(search) {
     promises.push(alkosto.scrapping(search, responses))
     promises.push(falabella.scrapping(search, responses))
     promises.push(mercadolibre.scrapping(search, responses))
+    promises.push(lineo.scrapping(search, responses))
     await Promise.all(promises)
     responses = _.sortBy(responses, ['description'])
     return responses
@@ -18,7 +20,12 @@ async function search(search) {
 module.exports.seachService = async (req, res) => {
     let data = await search(req.body.name_field);
     res.render('productos', { productos: data, title: req.body.name_field })
-}
+};
+module.exports.seachServiceApi = async (req, res) => {
+    let data = await search(req.body.name_field);
+    res.status(200).json(data);
+};
+
 /*
 search('P30 PRO').then(data => {
     console.log(data)

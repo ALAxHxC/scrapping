@@ -10,12 +10,10 @@ module.exports.scrapping = async function scrapping(search, responses) {
         const title = el.find('div.product__information').find('h2.product__information--name').text().trim();
 
         search.split(' ').forEach(text => {
-            console.log('compara', search, text)
             if (!title.includes(text)) {
                 return 'false'
             }
         })
-
 
         const description = el.find('div.product__price').find('span.price').text().trim();
         const link = 'https://www.alkomprar.com/' + el.find('div.product__image').find('a.js-product-click-datalayer').attr('href');
