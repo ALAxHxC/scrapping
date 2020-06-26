@@ -8,5 +8,8 @@ router.get('/', function (req, res, next) {
 router.post('/search', function (req, res, next) {
   scrapping.seachService(req, res)
 });
+router.post('/rest', function (req, res, next) {
+  scrapping.seachServiceApi(req, res)
+});
 
 module.exports = router;

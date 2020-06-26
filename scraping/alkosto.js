@@ -1,33 +1,30 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-module.exports.scrapping = async function scrapping(search, responses) {
+module.exports.scrapping = async function scrapping(search, responses, size) {
     search = search.replace(' ', '+')
     const pageContent = await axios.get('https://www.alkosto.com/salesperson/result/?q=' + search);
     const $ = cheerio.load(pageContent.data, {
         normalizeWhitespace: true,
     });
-    const presentations = $('.salesperson-products-grid-item').map((_, el) => {
-        el = $(el);
-        //console.log(el)
-        const title = el.find('h2.product-name').text().trim().replace('\n', '');
-        const description = el.find('.price').find('.price').text().trim().replace('\n', '');
-        const link = el.find('a.product-image').attr('href');
-        const image = el.find('a.product-image').find('img').attr('src');
-
-        search.split(' ').forEach(text => {
-            if (!title.includes(text)) {
-                return 'false'
+    let i = 0;
+    try {
+        const presentations = $('.salesperson-products-grid-item').map((_, el) => {
+            el = $(el);
+            if (i >= size) {
+                throw 'FInalize'
             }
-        })
-
-
-        //console.log(title,description,link,image)
-        responses.push({ title, description, link, image })
-        return {
-            title, description, link, image, fuente: 'alkosto'
-        };
-    }).get();
-    console.log(presentations);
+            const title = el.find('h2.product-name').text().trim().replace('\n', '').trim();
+            const description = el.find('.price').find('.price').text().trim().replace('\n', '').trim();
+            const link = el.find('a.product-image').attr('href');
+            const image = el.find('a.product-image').find('img').attr('src');
+            const price = parseFloat(description.split(' ')[1])
+            responses.push({ title, description, link, image, fuente: 'alkosto', price })
+            i++;
+        }).get();
+    } catch (error) {
+        console.log('alkosto error', error.message)
+        return;
+    }
 }
 

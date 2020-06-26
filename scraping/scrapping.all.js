@@ -4,16 +4,17 @@ const alkomprar = require('./alkomprar');
 const mercadolibre = require('./mercadolibre');
 const lineo = require('./lineo');
 const _ = require('lodash');
+const size = parseInt(process.env.SIZE) || 5
 async function search(search) {
     let responses = [];
     let promises = [];
-    promises.push(alkomprar.scrapping(search, responses))
-    promises.push(alkosto.scrapping(search, responses))
-    promises.push(falabella.scrapping(search, responses))
-    promises.push(mercadolibre.scrapping(search, responses))
-    promises.push(lineo.scrapping(search, responses))
+    promises.push(alkomprar.scrapping(search, responses, size))
+    promises.push(alkosto.scrapping(search, responses, size))
+    promises.push(falabella.scrapping(search, responses, size))
+    promises.push(mercadolibre.scrapping(search, responses, size))
+    promises.push(lineo.scrapping(search, responses, size))
     await Promise.all(promises)
-    responses = _.sortBy(responses, ['description'])
+    responses = _.sortBy(responses, ['price'])
     return responses
 }
 
@@ -25,10 +26,3 @@ module.exports.seachServiceApi = async (req, res) => {
     let data = await search(req.body.name_field);
     res.status(200).json(data);
 };
-
-/*
-search('P30 PRO').then(data => {
-    console.log(data)
-}).catch(error => {
-    console.log(error.message, error.stack)
-})*/
