@@ -18,13 +18,13 @@ module.exports.scrapping = async function scrapping(search, responses, size) {
             const link = 'https://www.linio.com.co' + el.find('a').attr('href');
             const image = el.find('div.image-container').find('figure').find('picture').find('img.image').attr('data-lazy');
             const price = parseFloat(description.split('$')[1])
-            responses.push({ title, description, link, image, fuente: 'lineo', price })
+            responses.push({ title, description, link, image, fuente: 'linio', price })
             i++;
             return;
         }).get();
     } catch (error) {
         console.log('error', error.message)
         return error
-    }
+    }za
 }
 

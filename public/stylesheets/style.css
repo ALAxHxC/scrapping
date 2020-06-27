@@ -142,14 +142,29 @@ label {
   padding: 0.75rem;
 }
 
+.card-header {
+  min-height: 15rem;
+  background-position: center;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  border-radius: 20px 20px 0 0 !important;
+  background-color: white;
+}
+
 .card img {
-  border-radius: 20px;
+  border-radius: 20px !important;
 }
 
 .card p {
   font-family: 'Poppins', 'sans-serif';
   font-size: 0.75rem;
   font-weight: 500;
+}
+
+.card p.product-title {
+  height: 2rem;
+  max-height: 2rem;
+  overflow: hidden;
 }
 
 .card h1,

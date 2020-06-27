@@ -19,7 +19,7 @@ module.exports.scrapping = async function cheerioExample(search, array, size) {
             const image = el.find('a.layout_grid-view').find('img').attr('src');
             const price = parseFloat(description)
             i++;
-            array.push({ title, description, link, image, fuente: 'fallabela', price })
+            array.push({ title, description, link, image, fuente: 'falabella', price })
             return
         }).get()
     } catch (error) {
