@@ -10,6 +10,9 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="/stylesheets/style.css">
 
+  <!-- Spinner -->
+  <link rel="stylesheet" href="/stylesheets/spinner/spinner.css">
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
@@ -38,17 +41,25 @@
       </div>
       <form action="/search/" method="POST">
         <div class="row">
-          <div class="col-md-9 my-3">
+          <div class="col-sm-12 col-md-12 col-lg-9 my-3">
             <label for="">¿Hay algo en lo que quieres ahorrar?</label>
             <input type="text" class="form-control" name="name_field" placeholder="Ex: Iphone X">
           </div>
-          <div class="col-md-3 my-3">
-            <button type="submit" class="btn btn-primary" value="Buscar">Quiero comparar</button>
+          <div class="col-sm-12 col-md-12 col-lg-3 my-3">
+            <button type="submit" class="btn btn-primary btn-lg" value="Buscar">Quiero comparar</button>
           </div>
         </div>
-      </form>  
+      </form>
     </div>
   </section>
+
+  <div class="loader-wrapper" id="loader-wrapper">
+    <div class="tenor-gif-embed" data-postid="5275838" data-share-method="host" data-width="100%"
+      data-aspect-ratio="1.7913669064748199">
+    </div>
+    <h2 class="my-5">Estamos navegando la web para traerte los mejores precios</h2>
+    
+  </div>
 
   <!-- <section class="results-section">
     <div class="container-fluid">
@@ -75,18 +86,20 @@
     </div>
   </section> -->
 
+  <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 
-  <!-- <div class="container">
+  <script>
+    const submitButton = $('.btn-lg');
+    const loaderWrapper = $('#loader-wrapper');
 
-    <form action="/search/" method="post">
-      <label for="team_name">Ingresa el producto que estas buscando: </label>
-      <input class="form-control" id="team_name" type="text" name="name_field" value="Celular P30" />
-
-      <input type="submit" class="btn btn-primary" value="Buscar" />
-    </form>
-  </div> -->
-
+    submitButton.click(() => {
+      loaderWrapper.css('display', 'flex');
+    })    
+    
+  </script>
 
 </body>
+
+
 
 </html>
