@@ -24,6 +24,7 @@ async function search(search) {
 
 module.exports.seachService = async (req, res) => {
     let data = await search(req.body.name_field);
+    console.log(req.body.name_field)
     res.render('productos', { productos: data, title: req.body.name_field })
 };
 module.exports.seachServiceApi = async (req, res) => {

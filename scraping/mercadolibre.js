@@ -29,5 +29,5 @@ module.exports.scrapping = async function scrapping(search, responses, size) {
         console.log('mercadolibre', error.message);
         return;
     }
-    return encotnrados;
+    return;
 }

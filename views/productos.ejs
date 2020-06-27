@@ -43,14 +43,20 @@
     <section class="results-section">
       <div class="container-fluid">
         <h1>Compara Productos .Co</h1>
-        <h3 class="my-3">Estás buscando:<span> Iphone X </span></h3>
+        <h3 class="my-3">Estás buscando:<span><% title %> </span></h3>
         <div
-          class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 my-5"
+          class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 my-5"
         >
           <% productos.forEach(product => { %>
           <div class="col mb-4">
             <div class="card h-100">
-              <img src="<%=product.image%>" class="card-img-top" alt="..." />
+              <img
+                src="<%=product.image%>"
+                max-width="60%"
+                max-heigth="70%"
+                class="img-fluid card-img-top rounded mx-auto d-block"
+                alt="..."
+              />
               <div class="card-body">
                 <p class="card-text"><%= product.title %></p>
                 <h5 class="card-title"><%= product.description %></h5>
