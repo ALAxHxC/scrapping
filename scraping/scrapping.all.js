@@ -14,7 +14,11 @@ async function search(search) {
     promises.push(mercadolibre.scrapping(search, responses, size))
     promises.push(lineo.scrapping(search, responses, size))
     await Promise.all(promises)
-    responses = _.sortBy(responses, ['price'])
+    responses = responses.sort(function (a, b) {
+        if (a.price < b.price) return -1;
+        if (a.price > b.price) return 1;
+        return 0;
+    });
     return responses
 }
 
