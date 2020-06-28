@@ -4,9 +4,10 @@ const alkomprar = require('./alkomprar');
 const mercadolibre = require('./mercadolibre');
 const lineo = require('./lineo');
 const _ = require('lodash');
-const size = parseInt(process.env.SIZE) || 5
+const size = parseInt(process.env.SIZE) || 5;
+const accent  = require('remove-accents');
 async function search(search) {
-    search = search.trim();
+    search = accent.remove(search.trim().normalize());
     let responses = [];
     let promises = [];
     promises.push(alkomprar.scrapping(search, responses, size))

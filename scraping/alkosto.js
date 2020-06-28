@@ -5,8 +5,7 @@ const filters = require('../scraping/filters');
 module.exports.scrapping = async function scrapping(search, responses, size) {
     try {
     search = search.replace(' ', '+')
-    const pageContent = await axios.get('https://www.alkosto.com/salesperson/result/?q=' + search,
-    {timeout:2});
+    const pageContent = await axios.get('https://www.alkosto.com/salesperson/result/?q=' + search);
     const $ = cheerio.load(pageContent.data, {
         normalizeWhitespace: true,
     });

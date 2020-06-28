@@ -4,8 +4,9 @@ const filters = require('../scraping/filters');
 
 module.exports.scrapping = async function scrapping(search, responses, size) {
     try {
-    search = search.replace(' ', '-')
+    search = search.normalize().replace(' ', '-')
     search = 'https://listado.mercadolibre.com.co/' + search
+    console.log('bsqueda',search)
     const pageContent = await axios.get(search);
     const $ = cheerio.load(pageContent.data);
     let i = 0
