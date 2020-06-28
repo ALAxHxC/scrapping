@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const filters = require('../scraping/filters');
 
 module.exports.scrapping = async function scrapping(search, responses, size) {
     search = search.replace(' ', '+')
@@ -14,7 +15,11 @@ module.exports.scrapping = async function scrapping(search, responses, size) {
             if (i >= size) {
                 throw 'FInalize'
             }
+            
             const title = el.find('h2.product-name').text().trim().replace('\n', '').trim();
+          
+            if(!filters.filterByName(title,search)) return;
+          
             const description = el.find('.price').find('.price').text().trim().replace('\n', '').trim();
             const link = el.find('a.product-image').attr('href');
             const image = el.find('a.product-image').find('img').attr('src');

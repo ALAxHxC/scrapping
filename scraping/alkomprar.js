@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const filters = require('../scraping/filters');
 
 module.exports.scrapping = async function scrapping(search, responses, size) {
     //search = search.replace(' ', '+')
@@ -14,12 +15,16 @@ module.exports.scrapping = async function scrapping(search, responses, size) {
                 throw 'FInalize'
             }
             const title = el.find('div.product__information').find('h2.product__information--name').text().trim();
+            
+            if(!filters.filterByName(title,search)) return;
+
             const description = el.find('div.product__price').find('span.price').text().trim();
             const link = 'https://www.alkomprar.com/' + el.find('div.product__image').find('a.js-product-click-datalayer').attr('href');
             const image = 'https://www.alkomprar.com/' + el.find('div.product__image').find('a.js-product-click-datalayer').find('div.product__image__container').find('img').attr('data-src');
             if (image == undefined || link == undefined) {
                 return;
             }
+            
             i++;
             const price = parseFloat(description.split('$')[1])
             responses.push({ title, description, link, image, fuente: 'alkomprar', price })
