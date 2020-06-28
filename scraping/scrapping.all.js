@@ -6,6 +6,7 @@ const lineo = require('./lineo');
 const _ = require('lodash');
 const size = parseInt(process.env.SIZE) || 5
 async function search(search) {
+    search = search.trim();
     let responses = [];
     let promises = [];
     promises.push(alkomprar.scrapping(search, responses, size))

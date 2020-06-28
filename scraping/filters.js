@@ -18,10 +18,9 @@ module.exports.filterByName = (name,search)=>{
     name = name.normalize().toLowerCase().split(' ');
     search = search.normalize().toLowerCase();
     try{
-    let response = false;
         name.forEach(item_name=>{
-           // console.log('compara',item_name,search)
-            if (!search.includes(item_name)){
+            //  console.log('compara',item_name,search)
+            if (search.includes(item_name)){
                throw new CoincideError('Error')
             }
         })
@@ -32,5 +31,5 @@ module.exports.filterByName = (name,search)=>{
         if (e instanceof NoCoincideError ) return false;
     }
 
-    return response;
+    return false;
 }

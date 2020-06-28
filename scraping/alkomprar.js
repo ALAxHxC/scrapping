@@ -4,10 +4,12 @@ const filters = require('../scraping/filters');
 
 module.exports.scrapping = async function scrapping(search, responses, size) {
     //search = search.replace(' ', '+')
-    const pageContent = await axios.get('https://www.alkomprar.com/search/?text=' + search);
+    try {
+    
+    const pageContent = await axios.get('https://www.alkomprar.com/search/?text=' + search,
+    {timeout:2});
     const $ = cheerio.load(pageContent.data);
     let i = 0;
-    try {
         const encotnrados = $('li.product__list--item').map((_, el) => {
 
             el = $(el);

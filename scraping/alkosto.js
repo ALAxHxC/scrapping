@@ -3,13 +3,14 @@ const cheerio = require('cheerio');
 const filters = require('../scraping/filters');
 
 module.exports.scrapping = async function scrapping(search, responses, size) {
+    try {
     search = search.replace(' ', '+')
-    const pageContent = await axios.get('https://www.alkosto.com/salesperson/result/?q=' + search);
+    const pageContent = await axios.get('https://www.alkosto.com/salesperson/result/?q=' + search,
+    {timeout:2});
     const $ = cheerio.load(pageContent.data, {
         normalizeWhitespace: true,
     });
     let i = 0;
-    try {
         const presentations = $('.salesperson-products-grid-item').map((_, el) => {
             el = $(el);
             if (i >= size) {
