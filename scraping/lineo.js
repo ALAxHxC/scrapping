@@ -3,12 +3,13 @@ const cheerio = require('cheerio');
 const filters = require('../scraping/filters');
 
 module.exports.scrapping = async function scrapping(search, responses, size) {
+    try {
     const pageContent = await axios.get('https://www.linio.com.co/search?scroll=&q=' + search);
     const $ = cheerio.load(pageContent.data, {
         normalizeWhitespace: true,
     });
     let i = 0;
-    try {
+    
         const presentations = $('div.catalogue-product').map((_, el) => {
             el = $(el);
             if (i >= size) {
@@ -29,6 +30,6 @@ module.exports.scrapping = async function scrapping(search, responses, size) {
     } catch (error) {
         console.log('error', error.message)
         return error
-    }za
+    }
 }
 
