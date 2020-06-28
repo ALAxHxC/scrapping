@@ -5,10 +5,10 @@ const filters = require('../scraping/filters');
 module.exports.scrapping = async function cheerioExample(search, array, size) {
     //search = search.replace(' ', '+')
     serach = 'https://www.falabella.com.co/falabella-co/search?Ntt=' + search
+    try{
     const pageContent = await axios.get(serach);
     const $ = cheerio.load(pageContent.data);
     let i = 0;
-    try {
         const encotnrados = $('.search-results--products').find('.pod-4_GRID').map((_, el) => {
             el = $(el);
             if (i >= size) {

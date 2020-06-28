@@ -3,12 +3,13 @@ const cheerio = require('cheerio');
 const filters = require('../scraping/filters');
 
 module.exports.scrapping = async function scrapping(search, responses, size) {
+    try {
     search = search.replace(' ', '-')
     search = 'https://listado.mercadolibre.com.co/' + search
     const pageContent = await axios.get(search);
     const $ = cheerio.load(pageContent.data);
     let i = 0
-    try {
+
         const encotnrados = $('li.results-item').map((_, el) => {
             if (i >= size) {
                 throw 'FInalize'
