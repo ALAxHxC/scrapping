@@ -23,10 +23,10 @@ module.exports.scrapping = async function scrapping(search, responses, size) {
             const description = el.find('div.price__container').text().trim();
             const link = el.find('div.images-viewer').attr('item-url');
             const image = el.find('div.images-viewer').find('div.image-content').find('a').find('img').attr('data-src');
-            if (image == undefined) {
+            const price = parseFloat(description.split(' ')[1])
+            if (image == undefined || isNaN(price)) {
                 return;
             }
-            const price = parseFloat(description.split(' ')[1])
             responses.push({ title, description, link, image, fuente: 'mercadolibre', price })
             i++;
             return
