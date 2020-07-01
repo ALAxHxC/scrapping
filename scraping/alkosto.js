@@ -41,7 +41,8 @@ module.exports.scrappingByWeb = async function scrapping(search, responses, size
         normalizeWhitespace: true,
     });
     let i = 0;
-        const presentations = $('.salesperson-products-grid-item').map((_, el) => {
+        const presentations = $('li.item').map((_, el) => {
+          
             el = $(el);
             if (i >= size) {
                 throw 'FInalize'
@@ -52,9 +53,10 @@ module.exports.scrappingByWeb = async function scrapping(search, responses, size
             if(!filters.filterByKeyWords(title,keywords)) return;
           
             const description = el.find('.price').find('.price').text().trim().replace('\n', '').trim();
-            const link = el.find('a.product-image').attr('href');
-            const image = el.find('a.product-image').find('img').attr('src');
+            const link = el.find('div.amlabel-div').find('a').attr('href');
+            const image = el.find('div.amlabel-div').find('a').find('img').attr('src');
             const price = parseFloat(description.split(' ')[1])
+            
             responses.push({ title, description, link, image, fuente: 'alkosto', price })
             i++;
         }).get();

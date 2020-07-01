@@ -8,18 +8,18 @@ module.exports.scrappingByWeb = async function scrapping(search, responses, size
     const $ = cheerio.load(pageContent.data);
     let i = 0
 
-        const encotnrados = $('li.item').map((_, el) => {
-           
+        const encotnrados = $('li.results-item').map((_, el) => {
+            console.log('carga')
             if (i >= size) {
                 throw 'FInalize'
             }
             el = $(el);
-            const title = el.find('div.product-info').find('h4.product-name').text().trim();
+            const title = el.find('div.item__info-container').find('h2.list-view-item-title').text().trim();
             
             if(!filters.filterByKeyWords(title,keywords)) return;
 
-            const description = el.find('div.product-info').find('div.price-box').find('p.special-price').find('span.price').text().trim();
-            const link = el.find('div.amlabel-div').find('a.product-image').attr('');
+            const description = el.find('div.price__container').text().trim();
+            const link = el.find('div.images-viewer').attr('item-url');
             const image = el.find('div.images-viewer').find('div.image-content').find('a').find('img').attr('data-src');
             const price = parseFloat(description.split(' ')[1])
             if (image == undefined || isNaN(price)) {
