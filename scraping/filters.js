@@ -1,3 +1,4 @@
+const accent  = require('remove-accents');
 class CoincideError extends Error {
     constructor(message) {
       super(message)
@@ -50,4 +51,27 @@ module.exports.filterByName = (name,search)=>{
     }
 
     return false;
+}
+
+
+
+module.exports.filterByKeyWords = (name,words)=>{
+  name  = accent.remove(name.trim().toLowerCase().normalize());
+ try{
+  words.forEach(item_name=>{
+     
+             console.log('compara',item_name,name,name.includes(item_name))
+              if (name.includes(item_name))
+              throw new CoincideError();
+          })
+          return false 
+  
+  }catch(e){
+    
+      if (e instanceof CoincideError)return true;
+      if (e instanceof NoCoincideError ) return false;
+      console.log('error',e.stack)
+  }
+
+  return false;
 }
