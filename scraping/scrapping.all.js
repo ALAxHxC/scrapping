@@ -8,6 +8,13 @@ const size = parseInt(process.env.SIZE) || 5;
 const accent  = require('remove-accents');
 const searchMongo = require('../model/search');
 
+const lists=[
+    'alkomprar',
+    'alkosto',
+    'falabella',
+    'mercadolibre',
+    'lineo'
+]
 async function saveSearch(search,responses){
     try{
    responses= responses.map(item=>{
@@ -46,9 +53,12 @@ async function search(search) {
     return responses
 }
 
+module.exports.indexSearch=async (req,res)=>{
+    res.render('index',{shop_list:lists})
+}
 module.exports.seachService = async (req, res) => {
     let data = await search(req.body.name_field);
-    res.render('productos', { productos: data, title: req.body.name_field })
+    res.render('productos', { productos: data, title: req.body.name_field,shop_list:lists})
     return await saveSearch(req.body.name_field,data)
 };
 module.exports.seachServiceApi = async (req, res) => {
