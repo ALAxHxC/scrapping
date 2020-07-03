@@ -1,64 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Compara Online</title>
-  <!-- CSS only -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171531026-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="/stylesheets/style.css" />
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet" />
+        gtag('config', 'UA-171531026-1');
+    </script>
 
-  <!-- JS, Popper.js, and jQuery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compara online</title>
 
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="/stylesheets/theme.min.css">
+    <!-- Additional CSS -->
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
 </head>
 
 <body>
-  <section class="results-section">
-    <div class="container-fluid">
-      <h1>Compara Productos .Co</h1>
-      <h3 class="my-3">Estás buscando:<span><% title %> </span></h3>
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-6 my-5">
-        <% productos.forEach(product => { %>
-        <div class="col mb-4">
-          <div class="card h-100">
-            <div class="card-header" style="background-image: url(<%=product.image%>);">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">
+            <h3>Compara Online</h3>
+        </a>
+
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Busca productos" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Comparar</button>
+        </form>
+    </nav>
+
+    <div class="container product-container">
+        <div class="row">
+            <% productos.forEach(product => { %>
+            <div class="col-sm-6 col-md-3 col-lx-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-header" style="background-image: url(<%=product.image%>);">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text product-title"><%= product.title %></p>
+                        <h5 class="card-title"><%= product.description %></h5>
+                        <div class="company-logo">
+                            <img src="/images/fuente-<%=product.fuente%>.jpg" alt="">
+                            <p><%= product.fuente %></p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="<%=product.link%>" target="_bank">IR A LA TIENDA</a>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-              <p class="card-text product-title"><%= product.title %></p>
-              <h5 class="card-title"><%= product.description %></h5>
-              <div class="company-logo">
-                <img src="/images/fuente-<%=product.fuente%>.jpg" alt="">
-                <p><%= product.fuente %></p>
-              </div>
-            </div>
-            <div class="card-footer">
-              <a href="<%=product.link%>" target="_bank">IR A LA TIENDA</a>
-            </div>
-          </div>
+            <% }) %>
         </div>
-        <% }) %>
-      </div>
     </div>
-  </section>
+
 </body>
-
-
 
 </html>

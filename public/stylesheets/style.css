@@ -1,170 +1,148 @@
-/* FONTS */
-
-@font-face {
-  font-family: 'league_spartanbold';
-  src: url('./fonts/league_spartan_bold_700-webfont.woff2') format('woff2'),
-       url('./fonts/league_spartan_bold_700-webfont.woff2') format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-/* ESTILOS GENERALES */
-
-body {
-  background-color: #040017;
-}
-
-h1,h2,h3,h4,h5,h6 {
-  font-family: 'league_spartanbold';
-  color: white;
-}
-
-
-
-
 /* INDEX */
 
 .main-section {
-  height: 100vh;
-  display: flex;
-  align-items: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
-.main-section .container {
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+.main-section .container-fluid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
 }
 
-.logo-container {
-  width: 100%;
+.main-section .logo-container {
+    max-width: 500px;
+    margin-bottom: 3rem;
 }
 
-.logo-container img {
-  max-width: 60%;
-  margin: 0 auto;
-  display: block;
+.main-section .logo-container img {
+    width: 100%;
+}
+
+.main-section .text-column {
+    margin-bottom: 3rem;
+    text-align: center;
 }
 
 .main-section form {
-  width: 100%;
+    display: flex;
+    width: 85%;
+    justify-content: center;
 }
 
-.main-section form .row {
-  align-items: flex-end;
+.main-section input {
+    max-width: 70%;
+    margin-right: 20px;
+    padding: 30px;
+    font-size: 20px;
 }
 
-.main-section form input {
-  padding: 2.15rem 2rem;
-  font-size: 1.5rem;
+.main-section button {
+    width: 20%;
+    font-size: 20px;
+    float: right;
 }
 
-.main-section form .btn-lg {
-  padding: 1.25rem 1rem;
-}
+@media (max-width: 770px) {
 
-.loader-wrapper {
-  background-color: #040017;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10%;
-}
+    .main-section .logo-container {
+        max-width: 70%;
+        margin: 0 auto 3rem;
+    }
 
-.loader-wrapper .tenor-gif-embed {
-  width: 70% !important;
-}
+    .main-section .text-column h5 {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+    }
 
-@media (max-width: 892px) {
-  .main-section form .btn-lg {
-    width: 100%;
-  }
-}
+    .main-section form {
+        flex-direction: column;
+    }
 
-@media (max-width: 691px) {
-  .logo-container img {
-    max-width: 85%;
-  }
+    .main-section input {
+        max-width: 100%;
+        width: 100%;
+        margin-bottom: 20px;
+    }
 
-  label {
-    display: block;
-    text-align: center;
-  }
-
-  .loader-wrapper h2 {
-    text-align: center;
-    font-size: 2rem;
-  }
+    .main-section button {
+        width: 100%
+    }
 }
 
 
-/* RESULTS PAGE */
+/* PRODUCTOS */
 
-.results-section {
-  padding: 20px;
+.navbar {
+    display: flex;
+    justify-content: space-between;
 }
 
-label {
-  font-family: 'Poppins', 'sans-serif';
-  font-size: 1.5em;
-  color: white;
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar form {
+        width: 100%;
+    }
+
+    .navbar .input {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .navbar button {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .product-container {
+        margin-top: 1rem !important;
+    }
 }
 
-.btn {
-  font-family: 'Poppins', 'sans-serif';
-}
-
-.btn-primary {
-  background-color: #00aeff;
-  border-color: #00aeff;
-}
-
-.btn-primary:hover {
-  background-color: #685CE6;
-  border-color: #685CE6;
+.product-container {
+    margin-top: 5rem;
 }
 
 .card {
-  border-radius: 20px;
-  border: 0;
+    border-radius: 20px;
+    border: 0;
 }
 
 .card-body {
-  padding: 0.75rem;
+    padding: 0.75rem;
+    background-color: white;
 }
 
 .card-header {
-  min-height: 15rem;
-  background-position: center;
-  background-size: 90%;
-  background-repeat: no-repeat;
-  border-radius: 20px 20px 0 0 !important;
-  background-color: white;
+    min-height: 15rem;
+    background-position: center;
+    background-size: 90%;
+    background-repeat: no-repeat;
+    border-radius: 20px 20px 0 0 !important;
+    background-color: white;
 }
 
 .card img {
-  border-radius: 20px !important;
+    border-radius: 20px !important;
 }
 
 .card p {
-  font-family: 'Poppins', 'sans-serif';
-  font-size: 0.75rem;
-  font-weight: 500;
+    font-family: 'Poppins', 'sans-serif';
+    font-size: 0.75rem;
+    font-weight: 500;
 }
 
 .card p.product-title {
-  height: 2rem;
-  max-height: 2rem;
-  overflow: hidden;
+    height: 2rem;
+    max-height: 2rem;
+    overflow: hidden;
 }
 
 .card h1,
@@ -173,42 +151,62 @@ label {
 .card h4,
 .card h5,
 .card h6 {
-  color: #040017;
+    color: #040017;
 }
 
 .company-logo {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .company-logo img {
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-right: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 0.5rem;
 }
 
 .company-logo p {
-  margin: 0;
+    margin: 0;
 }
 
 .card-footer {
-  background-color: #685CE6;
-  border-radius: 0 0 20px 20px !important;
-  text-align: center;
-  padding: 0;
-  min-height: 35px;
-  display: flex;
-  align-items: center;
+    background-color: #685CE6;
+    border-radius: 0 0 20px 20px !important;
+    text-align: center;
+    padding: 0;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
 }
 
 .card-footer a {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-family: 'league_spartanbold';
-  font-size: 0.8rem;
-  text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+
+/* LOADER */
+
+.loader-wrapper {
+    background-color: #040017;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+}
+
+.loader-wrapper .tenor-gif-embed {
+    width: 70% !important;
 }
