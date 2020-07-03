@@ -6,8 +6,7 @@ module.exports.scrapping = async function scrapping(search, responses, size) {
     //search = search.replace(' ', '+')
     try {
     
-    const pageContent = await axios.get('https://www.alkomprar.com/search/?text=' + search,
-    {timeout:2});
+    const pageContent = await axios.get('https://www.alkomprar.com/search/?text=' + search);
     const $ = cheerio.load(pageContent.data);
     let i = 0;
         const encotnrados = $('li.product__list--item').map((_, el) => {

@@ -1,10 +1,11 @@
+
 const axios = require('axios');
 const cheerio = require('cheerio');
 const filters = require('../scraping/filters');
 
 module.exports.scrapping = async function scrapping(search, responses, size) {
     try {
-    const pageContent = await axios.get('https://www.linio.com.co/search?scroll=&q=' + search);
+    const pageContent = await axios.get(search);
     const $ = cheerio.load(pageContent.data, {
         normalizeWhitespace: true,
     });

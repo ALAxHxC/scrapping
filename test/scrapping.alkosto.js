@@ -23,7 +23,7 @@ async function cheerioExample(search) {
 }
 
 
-cheerioExample('camara gopro').then((data)=>{
+cheerioExample('camara gopro hero7').then((data)=>{
 
 }).catch(error=>{
     console.log('error',error.message,error.stack);

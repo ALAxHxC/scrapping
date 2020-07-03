@@ -4,9 +4,39 @@ const alkomprar = require('./alkomprar');
 const mercadolibre = require('./mercadolibre');
 const lineo = require('./lineo');
 const _ = require('lodash');
-const size = parseInt(process.env.SIZE) || 5
+const size = parseInt(process.env.SIZE) || 5;
+const accent  = require('remove-accents');
+const searchMongo = require('../model/search');
+
+const lists=[
+    'alkomprar',
+    'alkosto',
+    'falabella',
+    'mercadolibre',
+    'lineo'
+]
+async function saveSearch(search,responses){
+    try{
+   responses= responses.map(item=>{
+    item.price = item.price +0;
+        return {
+            search:search,  
+            title:item.title,
+            description:item.description, 
+            link:item.link, 
+            image:item.image, 
+            fuente: 'mercadolibre', 
+            price:item.price
+        }
+    })
+    await searchMongo.searchModel.insertMany(responses)
+}catch(error){
+    console.log(error.message,error.stack);
+}
+}
+
 async function search(search) {
-    search = search.trim();
+    search = accent.remove(search.trim().normalize());
     let responses = [];
     let promises = [];
     promises.push(alkomprar.scrapping(search, responses, size))
@@ -23,10 +53,13 @@ async function search(search) {
     return responses
 }
 
+module.exports.indexSearch=async (req,res)=>{
+    res.render('index',{shop_list:lists})
+}
 module.exports.seachService = async (req, res) => {
     let data = await search(req.body.name_field);
-    console.log(req.body.name_field)
-    res.render('productos', { productos: data, title: req.body.name_field })
+    res.render('productos', { productos: data, title: req.body.name_field,shop_list:lists})
+    return await saveSearch(req.body.name_field,data)
 };
 module.exports.seachServiceApi = async (req, res) => {
     let data = await search(req.body.name_field);

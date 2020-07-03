@@ -9,6 +9,10 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+
+const mongoose = require('mongoose');
+mongoose.connect(process.env.URI||"mongodb+srv://compara:eyaZfHPfCqo6It6M@cluster0-uppt7.mongodb.net/compara?retryWrites=true&w=majority", {useNewUrlParser: true,useCreateIndex:true});
+mongoose.Promise = global.Promise;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
