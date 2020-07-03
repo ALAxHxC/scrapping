@@ -210,3 +210,7 @@
 .loader-wrapper .tenor-gif-embed {
     width: 70% !important;
 }
+
+.loader-wrapper h2 {
+    text-align: center;
+}
